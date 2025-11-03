@@ -1,0 +1,10 @@
+<!-- SVG Test Image -->
+<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="100" fill="#2563eb"/>
+  <text x="100" y="55" font-family="Arial" font-size="16" fill="white" text-anchor="middle">
+    Test Image
+  </text>
+  <text x="100" y="75" font-family="Arial" font-size="12" fill="white" text-anchor="middle">
+    Upload Test
+  </text>
+</svg>

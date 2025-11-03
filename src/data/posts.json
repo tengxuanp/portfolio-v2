@@ -1,0 +1,109 @@
+{
+  "posts": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "title": "Getting Started with HTB Season 9",
+      "content": "<h1>HTB Season 9 Journey</h1><p>This is my writeup for participating in HackTheBox Season 9 competition. The season focused heavily on Active Directory attacks and Windows exploitation techniques.</p><h2>Initial Setup</h2><p>First, I prepared my environment with the necessary tools:</p><ul><li><strong>Kali Linux VM</strong>: Primary attack machine</li><li><strong>Bloodhound</strong>: For AD enumeration</li><li><strong>Impacket</strong>: Python library for network protocols</li><li><strong>Responder</strong>: For credential harvesting</li></ul><h2>Key Challenges</h2><h3>Challenge 1: Initial Foothold</h3><p>The first machine required exploiting a web application vulnerability to gain initial access...</p><pre><code># Example exploit\ncurl -X POST http://target/login -d \"username=admin'--&password=anything\"</code></pre><h3>Challenge 2: Privilege Escalation</h3><p>Using Windows privileges to escalate from standard user to system...</p><h2>Lessons Learned</h2><ul><li>Always enumerate thoroughly before attempting exploitation</li><li>Keep detailed notes of all commands and their outputs</li><li>Practice makes perfect in cybersecurity</li></ul><h2>Conclusion</h2><p>HTB Season 9 was an incredible learning experience that enhanced my penetration testing skills significantly.</p>",
+      "category": "CTF",
+      "subcategory": "HTB Season 9",
+      "tags": [
+        "HTB Season 9",
+        "Active Directory",
+        "Windows",
+        "Penetration Testing"
+      ],
+      "createdAt": "2024-10-20T10:00:00.000Z",
+      "updatedAt": "2024-10-20T10:00:00.000Z",
+      "published": true,
+      "excerpt": "My journey and learnings from HTB Season 9 competition focusing on Active Directory attacks",
+      "slug": "getting-started-htb-season-9",
+      "images": []
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "title": "OSCP Preparation Strategy",
+      "content": "<h1>OSCP Preparation Guide</h1><p>After months of preparation, here's my comprehensive strategy for tackling the OSCP certification.</p><h2>Study Plan Overview</h2><p>The OSCP requires a structured approach combining theory and hands-on practice.</p><h3>Phase 1: Theory Foundation (2-3 months)</h3><ul><li><strong>Network Security Fundamentals</strong></li><li><strong>Web Application Security</strong></li><li><strong>Buffer Overflow Techniques</strong></li><li><strong>Linux & Windows Privilege Escalation</strong></li></ul><h3>Phase 2: Practical Labs (3-4 months)</h3><ul><li><strong>PWK Labs</strong>: Complete all exercises</li><li><strong>VulnHub Machines</strong>: Practice retired boxes</li><li><strong>TryHackMe</strong>: Structured learning paths</li><li><strong>HackTheBox</strong>: Real-world scenarios</li></ul><h3>Phase 3: Mock Exams (1 month)</h3><ul><li><strong>Proving Grounds</strong>: Offensive Security's practice platform</li><li><strong>Custom Lab Setup</strong>: Create your own vulnerable environment</li></ul><h2>Essential Tools</h2><pre><code># Reconnaissance\nnmap -sC -sV target_ip\ngobuster dir -u http://target -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt\n\n# Exploitation\nmsfconsole\nsqlmap -u \"http://target/page?id=1\" --dbs\n\n# Post-Exploitation\nlinpeas.sh\nwinpeas.exe</code></pre><h2>Time Management Tips</h2><ol><li><strong>Enumerate thoroughly</strong> - Spend 40% of time on reconnaissance</li><li><strong>Document everything</strong> - Keep detailed notes</li><li><strong>Take breaks</strong> - Avoid tunnel vision</li><li><strong>Practice reporting</strong> - Clear, professional documentation</li></ol><h2>Final Thoughts</h2><p>The OSCP is challenging but achievable with consistent practice and the right mindset. Focus on understanding concepts rather than memorizing exploits.</p><p><em>Try Harder!</em></p>",
+      "category": "CTF",
+      "subcategory": "OSCP Practice",
+      "tags": [
+        "OSCP",
+        "Certification",
+        "Penetration Testing",
+        "Study Guide"
+      ],
+      "createdAt": "2024-10-18T14:30:00.000Z",
+      "updatedAt": "2024-10-18T14:30:00.000Z",
+      "published": true,
+      "excerpt": "A comprehensive guide to preparing for the OSCP certification with practical tips and strategies",
+      "slug": "oscp-preparation-strategy",
+      "images": []
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "title": "Active Directory Attack Lab Setup",
+      "content": "# Building an Active Directory Attack Lab\n\nCreating a comprehensive AD lab environment for practicing penetration testing techniques.\n\n## Lab Architecture\n\n### Domain Controller (Windows Server 2019)\n- **Role**: Primary Domain Controller\n- **Features**: DNS, DHCP, Certificate Services\n- **Users**: Multiple domain users with varying privileges\n\n### Client Machines\n- **Windows 10 Workstations**: Standard domain-joined machines\n- **Windows Server 2016**: Member server with file shares\n- **Linux Machine**: For attacking from external perspective\n\n## Common Attack Vectors Implemented\n\n### 1. Kerberoasting\n```powershell\n# Set up service accounts with SPNs\nsetspn -A HTTP/web.lab.local svc_web\nsetspn -A MSSQL/db.lab.local svc_sql\n```\n\n### 2. AS-REP Roasting\n```powershell\n# Configure users with pre-auth disabled\nSet-ADAccountControl -Identity victim_user -DoesNotRequirePreAuth $true\n```\n\n### 3. Unconstrained Delegation\n```powershell\n# Configure server for unconstrained delegation\nSet-ADAccountControl -Identity server01 -TrustedForDelegation $true\n```\n\n## Attack Simulation\n\n### Initial Access\n- **Phishing simulation** with macro-enabled documents\n- **Web application** with SQL injection vulnerabilities\n- **SMB relay attacks** using Responder\n\n### Lateral Movement\n- **Pass-the-Hash** techniques\n- **Golden Ticket** attacks\n- **DCSync** exploitation\n\n## Defensive Measures Testing\n\n- **Windows Defender** evasion techniques\n- **PowerShell logging** bypass methods\n- **SIEM detection** rule testing\n\n## Lab Management\n\n### Snapshots Strategy\n```bash\n# Create clean state snapshots\nvmrun snapshot \"/path/to/vm.vmx\" \"Clean_State\"\n\n# Restore after testing\nvmrun revertToSnapshot \"/path/to/vm.vmx\" \"Clean_State\"\n```\n\n### Automation Scripts\n```powershell\n# Reset lab script\n# Restores all VMs to clean state\n# Recreates test users and groups\n# Configures vulnerable settings\n```\n\n## Key Learning Outcomes\n\n1. **Understanding AD Structure**: How domains, forests, and trusts work\n2. **Attack Techniques**: Practical implementation of common attacks\n3. **Detection Methods**: How attacks appear in logs\n4. **Mitigation Strategies**: Proper hardening techniques\n\n## Repository Structure\n\n```\nad-lab/\n├── configs/\n│   ├── domain-controller.ps1\n│   ├── member-server.ps1\n│   └── workstation.ps1\n├── attacks/\n│   ├── kerberoasting.py\n│   ├── asrep-roasting.py\n│   └── dcsync.py\n├── detection/\n│   ├── splunk-rules/\n│   └── sigma-rules/\n└── documentation/\n    ├── setup-guide.md\n    └── attack-scenarios.md\n```\n\nThis lab provides a comprehensive environment for understanding both offensive and defensive aspects of Active Directory security.",
+      "category": "CTF",
+      "subcategory": "OSCP Practice",
+      "tags": [
+        "Active Directory",
+        "Lab Setup",
+        "Penetration Testing",
+        "VMware"
+      ],
+      "createdAt": "2024-10-15T09:15:00.000Z",
+      "updatedAt": "2024-10-15T09:15:00.000Z",
+      "published": true,
+      "excerpt": "Complete guide to building an Active Directory attack lab for practicing penetration testing techniques",
+      "slug": "active-directory-attack-lab-setup",
+      "images": []
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "title": "Flipper Zero: Getting Started with Sub-GHz Analysis",
+      "content": "# Flipper Zero Sub-GHz Analysis Guide\n\nThe Flipper Zero is a powerful multi-tool for hardware hacking and RF analysis. This guide covers getting started with Sub-GHz signal analysis.\n\n## Hardware Overview\n\n### Key Features\n- **Sub-GHz Radio**: 300-928 MHz frequency range\n- **NFC/RFID**: 13.56 MHz and 125 kHz support\n- **Infrared**: Universal remote capabilities\n- **GPIO**: Hardware interfacing pins\n- **iButton/1-Wire**: Dallas key support\n\n## Sub-GHz Signal Analysis\n\n### Supported Protocols\n- **AM270**: Amplitude modulation at 270 kbps\n- **AM650**: Amplitude modulation at 650 kbps\n- **FM238**: Frequency modulation at 238 kbps\n- **FM476**: Frequency modulation at 476 kbps\n\n### Common Frequencies\n```\n315 MHz - North American ISM band\n433.92 MHz - European ISM band\n868 MHz - European SRD band\n915 MHz - North American ISM band\n```\n\n## Practical Applications\n\n### 1. Garage Door Analysis\n```bash\n# Capture garage door remote signal\n1. Navigate to Sub-GHz → Read\n2. Select frequency (usually 315 or 433 MHz)\n3. Press garage door remote\n4. Analyze captured signal\n```\n\n### 2. Weather Station Monitoring\n- **Temperature sensors**: Usually 433 MHz\n- **Wind speed sensors**: Various frequencies\n- **Rain gauges**: Typically ISM bands\n\n### 3. Car Key Fob Analysis\n**Warning**: Only test on your own vehicles!\n\n```bash\n# Capture and analyze key fob signals\n1. Sub-GHz → Read RAW\n2. Select appropriate frequency\n3. Capture signal while pressing key fob\n4. Save and analyze waveform\n```\n\n## Security Research Applications\n\n### Rolling Code Analysis\n- **KeeLoq**: Microchip's rolling code system\n- **HCS series**: Various implementations\n- **Linear**: Gate and garage systems\n\n### Fixed Code Systems\n- **DipSwitch**: Older garage systems\n- **Learning remotes**: Simple replay attacks\n- **Industrial controls**: Factory automation\n\n## Legal and Ethical Considerations\n\n⚠️ **Important Disclaimers**:\n- Only test devices you own\n- Respect local RF regulations\n- Don't interfere with licensed services\n- Educational purposes only\n\n## Advanced Techniques\n\n### Custom Firmware\n- **Unleashed firmware**: Extended capabilities\n- **RogueMaster**: Community features\n- **Official firmware**: Stable base\n\n### Signal Generation\n```python\n# Custom signal creation\n# Generate specific waveforms\n# Test device responses\n# Protocol reverse engineering\n```\n\n### Integration with Other Tools\n- **SDR integration**: GNU Radio compatibility\n- **Spectrum analyzers**: Professional RF tools\n- **Logic analyzers**: Digital protocol analysis\n\n## Conclusion\n\nThe Flipper Zero democratizes RF security research, making it accessible to researchers and enthusiasts. Always use responsibly and within legal boundaries.\n\n## Resources\n\n- [Official Documentation](https://docs.flipperzero.one/)\n- [Community Forum](https://forum.flipperzero.one/)\n- [GitHub Repository](https://github.com/flipperdevices)\n- [Awesome Flipper Zero](https://github.com/djsime1/awesome-flipperzero)",
+      "category": "Flipper Zero",
+      "subcategory": "Sub-GHz Analysis",
+      "tags": [
+        "Flipper Zero",
+        "Sub-GHz",
+        "RF Analysis",
+        "Hardware Hacking",
+        "ISM Band"
+      ],
+      "createdAt": "2024-10-12T16:45:00.000Z",
+      "updatedAt": "2024-10-12T16:45:00.000Z",
+      "published": true,
+      "excerpt": "Complete guide to getting started with Sub-GHz signal analysis using the Flipper Zero multi-tool",
+      "slug": "flipper-zero-subghz-analysis",
+      "images": []
+    },
+    {
+      "title": "Test Title",
+      "content": "<p>Test conte</p><img class=\"max-w-full h-auto rounded-lg\" src=\"/uploads/944c4287-6876-4b15-8684-5d1658f96f1a/1762176991840_hercules.jpg\" alt=\"Uploaded image\" title=\"Click to view full size\"><p><a target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-primary hover:underline cursor-pointer\" href=\"https://www.youtube.com/\">https://www.youtube.com/</a></p><p>sdd</p><img class=\"max-w-full h-auto rounded-lg\" src=\"https://i.imgur.com/7THlmhn.jpeg\"><p></p><p></p>",
+      "category": "CTF",
+      "subcategory": "HTB Season 9",
+      "tags": [],
+      "published": true,
+      "excerpt": "",
+      "slug": "testtitle",
+      "images": [],
+      "id": "944c4287-6876-4b15-8684-5d1658f96f1a",
+      "createdAt": "2025-11-03T08:24:10.005Z",
+      "updatedAt": "2025-11-03T13:36:35.312Z"
+    },
+    {
+      "title": "t2",
+      "content": "<p>tsda</p>",
+      "category": "CTF",
+      "subcategory": "",
+      "tags": [],
+      "published": false,
+      "excerpt": "",
+      "slug": "t2",
+      "images": [],
+      "id": "55ad2b79-4035-4188-940d-ebc15660f67c",
+      "createdAt": "2025-11-03T11:39:05.357Z",
+      "updatedAt": "2025-11-03T11:39:23.530Z"
+    }
+  ]
+}

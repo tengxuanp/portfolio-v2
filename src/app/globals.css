@@ -31,3 +31,76 @@ body {
     text-wrap: balance;
   }
 }
+
+/* TipTap Editor Styles */
+.tiptap-editor .ProseMirror {
+  outline: none;
+}
+
+.tiptap-editor .ProseMirror ul,
+.tiptap-editor .ProseMirror ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.tiptap-editor .ProseMirror ul li {
+  list-style-type: disc;
+  margin: 0.25rem 0;
+  padding-left: 0.25rem;
+}
+
+.tiptap-editor .ProseMirror ol li {
+  list-style-type: decimal;
+  margin: 0.25rem 0;
+  padding-left: 0.25rem;
+}
+
+.tiptap-editor .ProseMirror a {
+  color: hsl(var(--nextui-primary));
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tiptap-editor .ProseMirror a:hover {
+  opacity: 0.8;
+}
+
+.tiptap-editor .ProseMirror ul ul,
+.tiptap-editor .ProseMirror ol ol,
+.tiptap-editor .ProseMirror ul ol,
+.tiptap-editor .ProseMirror ol ul {
+  margin: 0.5rem 0;
+}
+
+.tiptap-editor .ProseMirror blockquote {
+  border-left: 3px solid hsl(var(--nextui-default-300));
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.tiptap-editor .ProseMirror code {
+  background-color: hsl(var(--nextui-default-100));
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+}
+
+.tiptap-editor .ProseMirror pre {
+  background-color: hsl(var(--nextui-default-100));
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.tiptap-editor .ProseMirror pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.tiptap-editor .ProseMirror hr {
+  border: none;
+  border-top: 2px solid hsl(var(--nextui-default-200));
+  margin: 2rem 0;
+}
