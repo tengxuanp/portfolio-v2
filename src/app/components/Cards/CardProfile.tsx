@@ -14,7 +14,7 @@ const CardProfile = () => {
             Welcome to RafaelRoot's
           </h1>
           <p className="text-lg text-default-600 max-w-2xl mx-auto">
-            Cybersecurity Professional | Penetration Tester | CTF Enthusiast
+            Cybersecurity Enthusiast | CTF Player
           </p>
           <p className="text-md text-default-500 mt-2">
             Sharing knowledge through writeups, projects, and security research

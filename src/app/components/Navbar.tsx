@@ -27,7 +27,7 @@ export default function index() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">Rafael 明軒</p>
+          <p className="font-bold text-inherit">RafaelRoot</p>
         </NavbarBrand>
       </NavbarContent>
 

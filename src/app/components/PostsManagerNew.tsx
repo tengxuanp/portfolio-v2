@@ -299,6 +299,24 @@ const PostsManagerContent = () => {
     }
   };
 
+  // Add keyboard shortcut listener for admin access
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Ctrl/Cmd + Shift + A for admin access
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') {
+        e.preventDefault();
+        if (!isAuthenticated) {
+          onLoginModalOpen();
+        } else {
+          openCreateModal();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [isAuthenticated]);
+
   if (loading) {
     return <div className="flex justify-center p-8">Loading posts...</div>;
   }
@@ -306,10 +324,25 @@ const PostsManagerContent = () => {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Cybersecurity Blog</h1>
-        <Button color="primary" onPress={openCreateModal}>
-          {isAuthenticated ? 'Create New Post' : 'Login to Create Post'}
-        </Button>
+        <div className="flex items-center gap-3">
+          <h1 className="text-3xl font-bold">Cybersecurity Blog</h1>
+          {/* Subtle admin indicator - small dot that's clickable */}
+          <div 
+            className={`w-2 h-2 rounded-full cursor-pointer transition-colors ${
+              isAuthenticated 
+                ? 'bg-success-500 hover:bg-success-600' 
+                : 'bg-default-300 hover:bg-warning-400'
+            }`}
+            onClick={openCreateModal}
+            title={isAuthenticated ? 'Create new post' : 'Admin access (Ctrl+Shift+A)'}
+          />
+        </div>
+        {/* Only show create button when authenticated */}
+        {isAuthenticated && (
+          <Button color="primary" onPress={openCreateModal}>
+            Create New Post
+          </Button>
+        )}
       </div>
 
       {/* Category Tabs */}
@@ -338,7 +371,7 @@ const PostsManagerContent = () => {
             >
               All {selectedCategory}
             </Chip>
-            {SUBCATEGORIES[selectedCategory].map((sub) => (
+            {(SUBCATEGORIES[selectedCategory] || []).map((sub) => (
               <Chip
                 key={sub}
                 size="sm"
@@ -490,7 +523,7 @@ const PostsManagerContent = () => {
                           setFormData({...formData, subcategory});
                         }}
                       >
-                        {SUBCATEGORIES[formData.category].map((sub) => (
+                        {(SUBCATEGORIES[formData.category] || []).map((sub) => (
                           <SelectItem key={sub} value={sub}>{sub}</SelectItem>
                         ))}
                       </Select>
@@ -626,7 +659,7 @@ const PostsManagerContent = () => {
                         setFormData({...formData, subcategory});
                       }}
                     >
-                      {SUBCATEGORIES[formData.category].map((sub) => (
+                      {(SUBCATEGORIES[formData.category] || []).map((sub) => (
                         <SelectItem key={sub} value={sub}>{sub}</SelectItem>
                       ))}
                     </Select>

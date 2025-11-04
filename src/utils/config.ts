@@ -28,8 +28,9 @@ export const appConfig = {
   features: {
     authentication: true,
     richTextEditor: true,
-    imageUpload: 'url-only', // Future: 'file-upload'
+    imageUpload: 'file-upload', // Full file upload with drag & drop support
     syntaxHighlighting: true,
+    defaultTheme: 'dark',
   },
   categories: {
     ctf: {
